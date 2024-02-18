@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
 ### STS ###
 .apt_generated
 .classpath
@@ -31,3 +37,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###application ###
+env.properties
+
