@@ -1,2 +1,2 @@
 To run the application  in terminal paste:mvn spring-boot:run
-To run Frontende React: npm start     
+To run Frontend React: npm start     
