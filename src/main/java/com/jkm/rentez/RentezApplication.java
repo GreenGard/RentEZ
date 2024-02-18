@@ -12,7 +12,7 @@ public class RentezApplication {
 	}
 
 	public static void SayHello(){
-		System.out.println("hejejejjejej");
+		System.out.println("up and running");
 	}
 
 }

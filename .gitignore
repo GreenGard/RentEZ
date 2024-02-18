@@ -39,5 +39,8 @@ build/
 .vscode/
 
 ###application ###
-env.properties
+.env
 
+node_modules/
+package-lock.json
+package.json
