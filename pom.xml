@@ -15,6 +15,8 @@
 	<description>Think about the environment-Rent</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+		<junit-platform.version>5.8.2</junit-platform.version>
 	</properties>
 
 	<dependencies>
@@ -23,44 +25,54 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-api</artifactId>
+    		<version>${junit-platform.version}</version>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-test</artifactId>
+    		<version>3.2.2</version>
+    		<scope>test</scope>
 		</dependency>
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		   <!-- MySQL Driver -->
- 		<dependency>
+		<dependency>
 			<groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
         </dependency>
-		<dependency>
+		<!-- <dependency>
     		<groupId>io.github.cdimascio</groupId>
     		<artifactId>java-dotenv</artifactId>
     		<version>5.2.2</version>
-		</dependency>
-		<!-- Spring Web -->
+		</dependency> -->
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
-        <!-- Spring Web MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
-<dependency>
-    <groupId>org.springframework.ws</groupId>
-    <artifactId>spring-ws</artifactId>
-    <version>4.0.10</version>
-    <type>pom</type>
-</dependency>
-
-
-
+		<dependency>
+    		<groupId>org.springframework.ws</groupId>
+    		<artifactId>spring-ws</artifactId>
+    		<version>4.0.10</version>
+    		<type>pom</type>
+		</dependency>	
+		<!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency> -->
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-core</artifactId>
+    		<version>5.5.1</version> 
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -69,7 +81,20 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+					<properties>
+						<configurationParameters>
+							junit.jupiter.execution.parallel.enabled = true
+							junit.jupiter.execution.parallel.mode.default = concurrent
+						</configurationParameters>
+					</properties>
+				</configuration>
+			</plugin> -->
 		</plugins>
 	</build>
-
 </project>

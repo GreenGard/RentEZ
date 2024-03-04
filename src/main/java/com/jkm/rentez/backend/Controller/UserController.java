@@ -1,5 +1,6 @@
-import com.jkm.rentez.backend.Entity.User;
-import com.jkm.rentez.backend.Service.UserService;
+import com.jkm.rentez.backend.entity.UserEntity;
+import com.jkm.rentez.backend.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,41 +12,42 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path="/api/users")
 public class UserController {
-
-    @Autowired
+    // @Autowired
     private UserService userService;
 
+
+    public UserController(UserService userService) {
+    this.userService=userService;
+    }
+
+
+
     @GetMapping
-    public List<User> getUsers() {
+    public List<UserEntity> getUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
+    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {
+        Optional<UserEntity> user = userService.getUserById(id);
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-     @PostMapping
-     public ResponseEntity<User> createUser(@RequestBody User user) {
+     @PostMapping("/api/users")
+     public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user) {
          try {
-             User newUser = userService.createUser(user);
+             UserEntity newUser = userService.createUser(user);
              return new ResponseEntity<>(newUser, HttpStatus.CREATED);
          } catch (Exception e) {
              return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
          }
      }
 
-    // @PostMapping("/api/users")
-    // public ResponseEntity<User> addUser(@RequestBody User user) {
-    //     User savedUser = userService.createUser(user);
-    //     return ResponseEntity.ok(savedUser);
-    // }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<UserEntity> updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
         try {
-            User updatedUser = userService.updateUser(id, user);
+            UserEntity updatedUser = userService.updateUser(id, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

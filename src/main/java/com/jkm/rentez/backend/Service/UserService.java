@@ -1,9 +1,9 @@
-package com.jkm.rentez.backend.Service;
-import com.jkm.rentez.backend.Entity.User;
+package com.jkm.rentez.backend.service;
+import com.jkm.rentez.backend.entity.UserEntity;
 import com.jkm.rentez.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+// import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,31 +12,45 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    // private PasswordEncoder passwordEncoder;
+    
+    // public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    //     this.userRepository = userRepository;
+    //     this.passwordEncoder = passwordEncoder;
+    // }
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+       
     }
 
-    public Optional<User> getUserById(Long id) {
+    public List<UserEntity> getAllUsers() {
+        return (List<UserEntity>) userRepository.findAll();
+    }
+
+    public Optional<UserEntity> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
-    public User createUser(User user) {
+    // public UserEntity createUser(UserEntity user) {
+    //     user.setPassword(passwordEncoder.encode(UserEntity.getPassword()));
+    //     return userRepository.save(user);
+    // }
+    public UserEntity createUser(UserEntity user) {
+        user.setPassword(UserEntity.getPassword());
         return userRepository.save(user);
     }
-
-    public User updateUser(Long id, User user) {
-        Optional<User> userData = userRepository.findById(id);
+    public UserEntity updateUser(Long id, UserEntity user) {
+        Optional<UserEntity> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
-            User _user = userData.get();
+            UserEntity _user = userData.get();
             _user.setName(user.getName());
             _user.setLastname(user.getLastname());
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
             _user.setCity(user.getCity());
             _user.setCompany(user.getCompany());
-            _user.setPassword(user.getPassword());
+            _user.setPassword(UserEntity.getPassword());
             return userRepository.save(_user);
         } else {
             throw new IllegalArgumentException("User not found with id: " + id);

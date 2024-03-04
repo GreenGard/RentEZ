@@ -46,3 +46,4 @@ package-lock.json
 package.json
 
 application.properties
+ src/main/resources/application.properties

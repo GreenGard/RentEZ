@@ -1,25 +1,23 @@
-package com.jkm.rentez.backend.Entity;
+package com.jkm.rentez.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 @Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserEntity {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String lastname;
     private String name;
     private String username;
     private String email;
     private String city;
     private String company;
-    private String password;
+    private static String password;
 
-    // Getters and setters
+
     public Long getId() {
         return id;
     }
@@ -76,11 +74,11 @@ public class User {
         this.company = company;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        UserEntity.password = password;
     }
 }
