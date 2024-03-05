@@ -36,26 +36,26 @@ public class UserService {
     //     return userRepository.save(user);
     // }
     public UserEntity createUser(UserEntity user) {
-        user.setPassword(UserEntity.getPassword());
         return userRepository.save(user);
     }
-    public UserEntity updateUser(Long id, UserEntity user) {
-        Optional<UserEntity> userData = userRepository.findById(id);
+    
+    // public UserEntity updateUser(Long id, UserEntity user) {
+    //     Optional<UserEntity> userData = userRepository.findById(id);
 
-        if (userData.isPresent()) {
-            UserEntity _user = userData.get();
-            _user.setName(user.getName());
-            _user.setLastname(user.getLastname());
-            _user.setUsername(user.getUsername());
-            _user.setEmail(user.getEmail());
-            _user.setCity(user.getCity());
-            _user.setCompany(user.getCompany());
-            _user.setPassword(UserEntity.getPassword());
-            return userRepository.save(_user);
-        } else {
-            throw new IllegalArgumentException("User not found with id: " + id);
-        }
-    }
+    //     if (userData.isPresent()) {
+    //         UserEntity user = userData.get();
+    //         // user.setName(user.getName());
+    //         // user.setLastname(user.getLastname());
+    //         user.setUsername(user.getUsername());
+    //         // user.setEmail(user.getEmail());
+    //         // user.setCity(user.getCity());
+    //         // user.setCompany(user.getCompany());
+    //         user.setPassword(UserEntity.getPassword());
+    //         return userRepository.save(user);
+    //     } else {
+    //         throw new IllegalArgumentException("User not found with id: " + id);
+    //     }
+    // }
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);

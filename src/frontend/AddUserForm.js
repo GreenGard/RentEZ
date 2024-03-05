@@ -1,71 +1,44 @@
-// eslint-disable-next-line
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 const AddUserForm = () => {
-  const [lastname, setLastName] = useState('');  
-  const [name, setName] = useState('');
-  const [username, setuserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [company, setCompany] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ username: '', password: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/users', { lastname, name, username, email, city,company, password });
-      console.log(response.data); 
-    } catch (error) {
-      console.error(error + "add user went wrong");
+
+    const response = await fetch('http://localhost:8080/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('User added successfully');
+    } else {
+      const data = await response.json();
+      alert(data);
     }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-     <input
-        type="text"
-        placeholder="Lastname"
-        value={lastname}
-        onChange={(e) => setLastName(e.target.value)}
-      />
       <input
         type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-        <input
-        type="text"
+        name="username"
         placeholder="Username"
-        value={username}
-        onChange={(e) => setuserName(e.target.value)}
+        value={formData.username}
+        onChange={handleChange}
       />
-    
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="company"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-      />
-    
       <input
         type="password"
+        name="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={formData.password}
+        onChange={handleChange}
       />
       <button type="submit">Add User</button>
     </form>

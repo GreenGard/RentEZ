@@ -9,12 +9,12 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String lastname;
-    private String name;
+    // private String lastname;
+    // private String name;
     private String username;
-    private String email;
-    private String city;
-    private String company;
+    // private String email;
+    // private String city;
+    // private String company;
     private static String password;
 
 
@@ -26,21 +26,21 @@ public class UserEntity {
         this.id = id;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
+    // public String getLastname() {
+    //     return lastname;
+    // }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+    // public void setLastname(String lastname) {
+    //     this.lastname = lastname;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    //     this.name = name;
+    // }
 
     public String getUsername() {
         return username;
@@ -50,29 +50,29 @@ public class UserEntity {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    // public String getEmail() {
+    //     return email;
+    // }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // public void setEmail(String email) {
+    //     this.email = email;
+    // }
 
-    public String getCity() {
-        return city;
-    }
+    // public String getCity() {
+    //     return city;
+    // }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+    // public void setCity(String city) {
+    //     this.city = city;
+    // }
 
-    public String getCompany() {
-        return company;
-    }
+    // public String getCompany() {
+    //     return company;
+    // }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+    // public void setCompany(String company) {
+    //     this.company = company;
+    // }
 
     public static String getPassword() {
         return password;
