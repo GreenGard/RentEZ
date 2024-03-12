@@ -25,8 +25,10 @@ const AddUserForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='bg-gray-600'>
+    <form onSubmit={handleSubmit} className='bg-gray-600'>
       <input
+      className='bg-gray-600'
         type="text"
         name="username"
         placeholder="Username"
@@ -42,6 +44,7 @@ const AddUserForm = () => {
       />
       <button type="submit">Add User</button>
     </form>
+    </div>
   );
 };
 

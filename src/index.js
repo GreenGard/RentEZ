@@ -1,32 +1,16 @@
 import React from 'react';
-//import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom';
+//import App from './App';
 import AddUserForm from './frontend/AddUserForm';
+import './input.css';
+//import reportWebVitals from './reportWebVitals';
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello!</h1>
+    <div className="bg-gray-600 h-screen text-white flex justify-center items-center">
+      <h1 className="text-3xl font-bold">Hello Tailwind CSS!</h1>
       <AddUserForm/>
     </div>
   );
 };
 createRoot(document.getElementById('root')).render(<App />);
-//ReactDOM.render(<App />, document.getElementById('root'));
-
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import AddUserForm from './frontend/AddUserForm';
-
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/add-user" element={<AddUserForm />} />
-//         {/* Andra routes */}
-//       </Routes>
-//     </Router>
-//   );
-// };
-
-// export default App;
